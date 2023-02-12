@@ -36,7 +36,7 @@ CREATE TABLE `EXCURSION`(
         );
         
 CREATE TABLE `ALOJAMIENTO`(
-		`CodAlojameiento` int(20)not null,
+		`CodAlojamiento` int(20)not null,
         `Categoria` varchar(20),
         `Capacidad` int(20),
         `CodPN` int(20) not null
@@ -83,7 +83,7 @@ CREATE TABLE `MINERAL`(
 		);
     
 CREATE TABLE `AREA`(
-		`Nombre` varchar(20) not null,
+		`NombreA` varchar(20) not null,
         `Extension` int(20),
         `CodPN` int(20) not null
         );
@@ -143,7 +143,7 @@ CREATE TABLE `CA-PN`(
         
 CREATE TABLE `E-A`(
 		`CodEspecie` int(15) not null,
-        `CodArea` int(15),
+        `CodArea` varchar(20),
         `CantIndividuos` int(50)
         );
         
@@ -159,7 +159,6 @@ CREATE TABLE `I-P`(
         
 	ALTER TABLE `E-V`
 		add primary key (`CodExcursion`),
-        add primary key (`DNI`),
         add key (`CodExcursion`),
         add key (`DNI`);
         
@@ -175,8 +174,6 @@ CREATE TABLE `I-P`(
          
 	ALTER TABLE `A-V`
 		add primary key (`FechaInicio`),
-        add primary key (`CodAlojamiento`),
-        add primary key (`DNI`),
         add key (`FechaInicio`),
         add key (`CodAlojamiento`),
         add key (`DNI`);
@@ -186,7 +183,6 @@ CREATE TABLE `I-P`(
         
 	ALTER TABLE `CA-PN`
 		add primary key (`CodCA`),
-        add primary key (`CodPN`),
         add key (`CodCA`),
         add key (`CodPN`);
         
@@ -205,9 +201,8 @@ CREATE TABLE `I-P`(
         
 	ALTER TABLE `E-A`
 		add primary key (`CodEspecie`),
-        add primary key (`CodArea`),
         add key (`CodEspecie`),
-        add key (`CodEspecie`);
+        add key (`CodArea`);
         
 	ALTER TABLE `ESPECIE`
 		add primary key (`CodEspecie`);
@@ -246,7 +241,6 @@ CREATE TABLE `I-P`(
         
 	ALTER TABLE `I-P`
 		add primary key (`CodProy`),
-        add primary key (`DNI`),
         add key (`CodProy`),
         add key (`DNI`);
         
@@ -264,6 +258,73 @@ CREATE TABLE `I-P`(
         add key (`CodProy`),
         add key (`CodEspecie`);
         
+        
+-- implementamos las llaves y hacia donde hacen referencia
+
+ALTER TABLE `CA-PN`
+	add constraint `CA-PN_ibfk1` foreign key (`CodCA`) references `COMUNIDAD AUTONOMA` (`CodCA`) on delete no action on update no action,
+    add constraint `CA-PN_ibfk2` foreign key (`CodPN`) references `PARQUE NATURAL` (`CodPN`) on delete no action on update no action;
+    
+ALTER TABLE `ANIMAL`
+	add constraint `ANIMAL_ibfk1` foreign key (`CodEspecie`) references `ESPECIE` (`CodEspecie`) on delete no action on update no action;
+        
+ALTER TABLE `VEGETAL`
+	add constraint `VEGETAL_ibfk1` foreign key (`CodEspecie`) references `ESPECIE`(`CodEspecie`) on delete no action on update no action;
+    
+ALTER TABLE `MINERAL`
+	add constraint `MINERAL_ibfk1` foreign key (`CodEspecie`) references `ESPECIE`(`CodEspecie`) on delete no action on update no action;
+    
+ALTER TABLE `E-V`
+	add constraint `E-V_ibfk1` foreign key (`CodExcursion`) references `EXCURSION`(`CodExcursion`) on delete no action on update no action,
+    add constraint `E-V_ibfk2` foreign key (`DNI`) references `VISITANTE`(`DNI`) on delete no action on update no action;
+    
+ALTER TABLE `A-V`
+	add constraint `A-V_ibfk1` foreign key (`CodAlojamiento`) references `ALOJAMIENTO`(`CodAlojamiento`) on delete no action on update no action,
+    add constraint `A-V_ibfk2` foreign key (`DNI`) references `VISITANTE`(`DNI`) on delete no action on update no action;
+    
+ALTER TABLE `E-A`
+	add constraint `E-A_ibfk1` foreign key (`CodEspecie`) references `ESPECIE` (`CodEspecie`) on delete no action on update no action,
+    add constraint `E-A_ibfk2` foreign key (`CodArea`) references `AREA`(`NombreA`) on delete no action on update no action;
+    
+ALTER TABLE `AREA`
+	add constraint `AREA_ibfk1` foreign key (`CodPN`) references `PARQUE NATURAL`(`CodPN`) on delete no action on update no action;
+    
+ALTER TABLE `VEHICULO`
+	add constraint `VEHICULO_ibfk1` foreign key(`DNI`) references `VIGILANTE`(`DNI`) on delete no action on update no action;
+    
+ALTER TABLE `I-P`
+	add constraint `I-P_ibfk1` foreign key (`CodProy`) references `PROYECTO`(`CodProy`) on delete no action on update no action,
+    add constraint `I-P_ibfk2` foreign key (`DNI`) references `INVESTIGADOR`(`DNI`) on delete no action on update no action;
+
+ALTER TABLE `PROYECTO`
+	add constraint `PROYECTO_ibfk1` foreign key (`CodEspecie`) references `ESPECIE`(`CodEspecie`) on delete no action on update no action;
+    
+ALTER TABLE `EXCURSION`
+	add constraint `EXCURSION_ibfk1` foreign key(`CodAlojamiento`) references `ALOJAMIENTO`(`CodAlojamiento`) on delete no action on update no action;
+    
+ALTER TABLE `ALOJAMIENTO`
+	add constraint `ALOJAMIENTO_ibfk1` foreign key (`CodPN`) references `PARQUE NATURAL`(`CodPN`) on delete no action on update no action;
+    
+ALTER TABLE `ENTRADA`
+	add constraint `ENTRADA_ibfk1` foreign key (`CodPN`) references `PARQUE NATURAL`(`CodPN`) on delete no action on update no action;
+    
+ALTER TABLE `PERSONAL`
+	add constraint `PERSONAL_ibfk1` foreign key (`CodPN`) references `PARQUE NATURAL`(`CodPN`) on delete no action on update no action;
+    
+ALTER TABLE `CONSERVADOR`
+	add constraint `CONSERVADOR_ibfk1` foreign key (`DNI`) references `PERSONAL`(`DNI`) on delete no action on update no action,
+    add constraint `CONSERVADOR_ibfk2` foreign key (`NombreA`) references `AREA` (`NombreA`) on delete no action on update no action;
+    
+ALTER TABLE `VIGILANTE`
+	add constraint `VIGILANTE_ibfk1` foreign key(`DNI`) references `PERSONAL`(`DNI`) on delete no action on update no action,
+    add constraint `VIGILANTE_ibfk2` foreign key (`NombreA`) references `AREA`(`NombreA`) on delete no action on update no action;
+    
+ALTER TABLE `INVESTIGADOR`
+	add constraint `INVESTIGADOR_ibfk1` foreign key (`DNI`) references `PERSONAL`(`DNI`) on delete no action on update no action;
+    
+ALTER TABLE `GESTOR`
+	add constraint `GESTOR_ibfk1` foreign key (`DNI`) references `PERSONAL`(`DNI`) on delete no action on update no action,
+    add constraint `GESTOR_ibfk2` foreign key (`CodEntrada`) references `ENTRADA`(`CodEntrada`) on delete no action on update no action;
         
         
         
