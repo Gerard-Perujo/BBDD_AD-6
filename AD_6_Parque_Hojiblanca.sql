@@ -152,6 +152,121 @@ CREATE TABLE `I-P`(
         `DNI` int(9) not null
         );
         
+	-- ahora que tenemos creadas todas las tablas crearemos los indices --
+    
+    ALTER TABLE `VISITANTE`
+		add primary key (`DNI`);
+        
+	ALTER TABLE `E-V`
+		add primary key (`CodExcursion`),
+        add primary key (`DNI`),
+        add key (`CodExcursion`),
+        add key (`DNI`);
+        
+	ALTER TABLE `EXCURSION`
+		add primary key (`CodExcursion`),
+        add key (`CodExcursion`),
+        add key (`CodAlojamiento`);
+        
+	ALTER TABLE `ALOJAMIENTO`
+		 add primary key (`CodAlojamiento`),
+         add key (`CodAlojamiento`),
+         add key (`CodPN`);
+         
+	ALTER TABLE `A-V`
+		add primary key (`FechaInicio`),
+        add primary key (`CodAlojamiento`),
+        add primary key (`DNI`),
+        add key (`FechaInicio`),
+        add key (`CodAlojamiento`),
+        add key (`DNI`);
+        
+	ALTER TABLE `COMUNIDAD AUTONOMA`
+		add primary key (`CodCA`);
+        
+	ALTER TABLE `CA-PN`
+		add primary key (`CodCA`),
+        add primary key (`CodPN`),
+        add key (`CodCA`),
+        add key (`CodPN`);
+        
+	ALTER TABLE `PARQUE NATURAL`
+		add primary key (`CodPN`);
+        
+	ALTER TABLE `ENTRADA`
+		add primary key (`CodEntrada`),
+        add key (`CodEntrada`),
+        add key (`CodPN`);
+        
+	ALTER TABLE `PERSONAL`
+		add primary key (`DNI`),
+        add key (`DNI`),
+        add key (`CodPN`);
+        
+	ALTER TABLE `E-A`
+		add primary key (`CodEspecie`),
+        add primary key (`CodArea`),
+        add key (`CodEspecie`),
+        add key (`CodEspecie`);
+        
+	ALTER TABLE `ESPECIE`
+		add primary key (`CodEspecie`);
+        
+	ALTER TABLE `ANIMAL`
+		add primary key (`CodEspecie`),
+        add key (`CodEspecie`);
+        
+	ALTER TABLE `AREA`
+		add primary key (`NombreA`),
+        add key (`NombreA`),
+        add key (`CodPN`);
+        
+	ALTER TABLE `CONSERVADOR`
+		add primary key (`DNI`),
+        add key (`DNI`),
+        add key (`NombreA`);
+        
+	ALTER TABLE `VIGILANTE`
+		add primary key (`DNI`),
+        add key (`DNI`),
+        add key (`NombreA`);
+        
+	ALTER TABLE `VEHICULO`
+		add primary key (`Matricula`),
+        add key (`Matricula`),
+        add key (`DNI`);
+        
+	ALTER TABLE `VEGETAL`
+		add primary key (`CodEspecie`),
+        add key (`CodEspecie`);
+        
+	ALTER TABLE `MINERAL`
+		add primary key (`CodEspecie`),
+        add key (`CodEspecie`);
+        
+	ALTER TABLE `I-P`
+		add primary key (`CodProy`),
+        add primary key (`DNI`),
+        add key (`CodProy`),
+        add key (`DNI`);
+        
+	ALTER TABLE `INVESTIGADOR`
+		add primary key (`DNI`),
+        add key (`DNI`);
+        
+	ALTER TABLE `GESTOR`
+		add primary key (`DNI`),
+        add key (`DNI`),
+        add key (`CodEntrada`);
+        
+	ALTER TABLE `PROYECTO`
+		add primary key (`CodProy`),
+        add key (`CodProy`),
+        add key (`CodEspecie`);
+        
+        
+        
+        
         
 
         
