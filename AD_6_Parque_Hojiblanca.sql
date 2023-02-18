@@ -1,12 +1,12 @@
 CREATE DATABASE IF NOT EXISTS Parque_Hojiblanca;
 USE Parque_hojiblanca;
 
--- desactivamos las llaves para poder insertar los datos y no nos de error--
+/* desactivamos las llaves para poder insertar los datos y no nos de error*/
 
 SET FOREIGN_KEY_CHECKS = 0;
 
 
--- creamos todas las tablas del DER --
+/* creamos todas las tablas del DER */
 
 CREATE TABLE `PARQUE NATURAL` (
 		`CodPn` int(10) not null,
@@ -89,7 +89,7 @@ CREATE TABLE `AREA`(
         );
         
 CREATE TABLE `VEHICULO`(
-		`Matricula` int(15) not null,
+		`Matricula` varchar(15) not null,
         `Tipo` varchar(15),
         `DNI` int(9)
         );
@@ -152,7 +152,7 @@ CREATE TABLE `I-P`(
         `DNI` int(9) not null
         );
         
-	-- ahora que tenemos creadas todas las tablas crearemos los indices --
+	/* ahora que tenemos creadas todas las tablas crearemos los indices */
     
     ALTER TABLE `VISITANTE`
 		add primary key (`DNI`);
@@ -259,7 +259,7 @@ CREATE TABLE `I-P`(
         add key (`CodEspecie`);
         
         
--- implementamos las llaves y hacia donde hacen referencia
+/* implementamos las llaves y hacia donde hacen referencia*/
 
 ALTER TABLE `CA-PN`
 	add constraint `CA-PN_ibfk1` foreign key (`CodCA`) references `COMUNIDAD AUTONOMA` (`CodCA`) on delete no action on update no action,
@@ -325,7 +325,59 @@ ALTER TABLE `INVESTIGADOR`
 ALTER TABLE `GESTOR`
 	add constraint `GESTOR_ibfk1` foreign key (`DNI`) references `PERSONAL`(`DNI`) on delete no action on update no action,
     add constraint `GESTOR_ibfk2` foreign key (`CodEntrada`) references `ENTRADA`(`CodEntrada`) on delete no action on update no action;
-        
+    
+    
+/* Gerard insertara los valores en las tablas, area, vehiculo, Especie, Animal, Vegetal, Mineral */
+  
+INSERT INTO AREA ( NombreA, Extension, CodPN) VALUES
+					('Sistema_Central', 600,  null );
+                    
+INSERT INTO VEHICULO (Matricula, Tipo, DNI) VALUES 
+					('2654TDF', 'Toyota', null),
+                    ('7852LDF', 'Nissan', null),
+                    ('6547PDT', 'Suzuky', null),
+                    ('1546RQF', 'LandCruiser', null),
+                    ('8521MCT', 'Ford', null);
+                   
+INSERT INTO ESPECIE (CodEspecie, NombreCientifico, NombreVulgar) VALUES
+					(1003, 'Cervus_Elaphus', 'Ciervo'),
+                    (1004, 'Capra_Pyrenaica', 'Cabra_Montesa'),
+                    (1005, 'Sus_Scrofa', 'Jabali'),
+                    (1006, 'Capreolus_Capreolus', 'Corzos'),
+                    (1007, 'Dama_Dama', 'Gamos'),
+                    (2003, 'Pinus_Sylvestris', 'Pino_Silvestre'),
+                    (2004, 'Pinus_pinea', 'Pino_Piñonero'),
+                    (2005, 'Pinus_Pinaster', 'Pino_Rodeno'),
+                    (2006, 'Quercus_Robur', 'Roble'),
+                    (2007, 'Quercus_ilex', 'Encina'),
+                    (3003, 'Nitruro_de_Boro_Cubico', 'Diamante'),
+                    (3004, 'Sphalerite', 'Esfalerita'),
+                    (3005, 'Zincite', 'Cincita'),
+                    (3006, 'Garnet_Gemstone', 'Granate'),
+                    (3007, 'Calaita', 'Turquesa');
+                    
+INSERT INTO ANIMAL (CodEspecie, Alimentacion, PeriodoCelo) VALUES
+				   (1003, 'Plantas_leñosas', 'Septiembre_a_Octubre'),
+                   (1004, 'Herbacias', 'Noviembre_a_Enero'),
+                   (1005, 'Fruta_y_Semillas', 'Noviembre_a_Diciembre'),
+                   (1006, 'Brotes_y_pasto', 'Julio_a_Agosto'),
+                   (1007, 'Hierbas_y_Hojas', 'Septiembre_a_Octubre');
+                   
+INSERT INTO VEGETAL (CodEspecie, Floracion, PeriodoFloracion) VALUES
+				    (2003, 'Piñas_Alargadas', 'Abril_a_Mayo'),
+                    (2004, 'Piñas_Redondas', 'Marzo_a_Junio'),
+                    (2005, 'Piñas_grandes_y_conicas', 'Marzo_a_Mayo'),
+                    (2006, 'Bellotas', 'Abril_a_Mayo'),
+                    (2007, 'Bellota_Redonda', 'Marzo_a_Mayo');
+                    
+INSERT INTO MINERAL (CodEspecie, Tipo) VALUES
+					(3003, 'Elementos_Nativos'),
+                    (3004, 'Sulfuros'),
+                    (3005, 'Oxidos'),
+                    (3006, 'Silicatos'),
+                    (3007, 'Fosfatos');
+                    
+
         
         
         
