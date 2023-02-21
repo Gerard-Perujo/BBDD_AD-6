@@ -377,9 +377,69 @@ INSERT INTO MINERAL (CodEspecie, Tipo) VALUES
                     (3006, 'Silicatos'),
                     (3007, 'Fosfatos');
                     
+/* Noelia insertara los valores en las tablas, personal, conservador, vigilante, investigador, gestor, proyecto */
 
-        
-        
-        
+INSERT INTO PERSONAL (DNI,NSS, Nombre, Direccion, TfnoDomicilio, TfnoMovil, Sueldo, CodPN) VALUES 
+                     (123456789, 00000000000000000000, 'Marcos Valverde', 'Calle Falsa 11', 926871331, 652278461, 2000, 01),
+                     (456123789, 11111111111111111111, 'Jose Manuel Prado', 'Plaza Mayor 22', 926871332, 652274862, 3000, 01),
+                     (789123456, 22222222222222222222, 'Ana Villahermosa', 'Calle Nueva 33', 926871333, 652274863, 3500, 01),
+					 (321654987, 33333333333333333333, 'Miguel Baos', 'Avenida Central 44', 926871334, 652274864, 4000, 01),
+					 (987654321, 44444444444444444444, 'Lucia Blanco', 'Calle Principal 55', 926871335, 652274865, 4500, 01),
+                     
+					 (057287230, 55555555555555555555, 'Blanca Suarez', 'Plaza de la Libertad 66', 926871336, 652274866, 5000, 02),
+					 (882516635, 66666666666666666666, 'Diego Ramirez', 'Calle del Sol 77', 926871337, 652274867 , 5500, 02),
+					 (145366658, 77777777777777777777, 'Carla Díaz', 'Avenida Principal 88', 926871338, 652274868, 6000, 02),
+					 (369854777, 88888888888888888888, 'David García', 'Calle de la Luna 99', 926871339, 652274869, 6500, 02),
+					 (325441256, 99999999999999999999, 'Rosa Ortiz', 'Avenida del Mar 10', 926871330, 652274860, 7000, 02),
+                     
+                     (698755114, 01234567899876543210, 'Javier Sobrino', 'Plaza del Ayuntamiento 123', 926871300, 652274800, 7500, 03),
+                     (369845558, 98765432100123456789, 'Elena De Toro', 'Calle de los Olivos 01', 926871311, 652274811, 8000, 03),
+                     (102001522, 00112233445566778899, 'Mario Bros', 'Avenida de la Paz 73', 926871322, 652274822, 8500, 03),
+                     (778778874, 99887766554433221100, 'Laura Castro', 'Calle del Cielo 19', 926871333, 652274833, 9000, 03),
+                     (765214785, 10101010101010101010, 'Santiago Fernandez', 'Plaza de 28 Constitucion 45', 926871344, 652274844, 9500, 03),
+                     
+                     (057287233, 11223344556677889910, 'Lucia Cejudo', 'Calle la Huerta, 0', 900102801, 613841744, 10000, 04), 
+                     (705924652, 12123434565678789090, 'Ana Cañizares', 'Calle del Pez, 8', 900102802, 613841745, 10500, 04), 
+                     (223125514, 12312345645678978900, 'Aron Ortega', 'Calle Severo Ochoa, 6', 900102803, 613841746, 11000, 04), 
+                     (447854456, 98987676545432322121, 'Maria Menchero', 'Calle Aulagueros, 4', 900102804, 613841747, 11500, 04), 
+                     (010122548, 00100200300400500600, 'Alejandro Chacon', 'Calle Santísimo, 10', 900102805, 613841748, 12000, 04); 
+                     
 
-        
+INSERT INTO CONSERVADOR (DNI, Tarea, NombreA) VALUES 
+						(123456789, 'Mantenimiento de instalaciones', 'Sistema_Central'),
+                        (456123789, 'Gestión de la fauna', 'Sistema_Central'), 
+                        (789123456, 'Catalogacion de especies', 'Sistema_Central'), 
+                        (321654987, 'Restauración del medio natural', 'Sistema_Central'), 
+                        (987654321, 'Limpieza general', 'Sistema_Central'); 
+                        
+INSERT INTO VIGILANTE (DNI, NombreA) VALUES 
+					  (057287230, 'Sistema_Central'),
+                      (882516635, 'Sistema_Central'), 
+                      (145366658, 'Sistema_Central'), 
+                      (369854777, 'Sistema_Central'),
+                      (325441256, 'Sistema_Central'); 
+                      
+INSERT INTO INVESTIGADOR (DNI, Titulacion) VALUES 
+						 (698755114, 'Doctorado en Biología'),
+                         (369845558, 'Máster en Ecología'), 
+                         (102001522, 'Ingeniero Forestal'),
+                         (778778874, 'Licenciado en Geología'),
+                         (765214785, 'Máster en Biodiversidad y Gestión Ambiental'); 
+                         
+                         
+INSERT INTO GESTOR (DNI, CodEntrada) VALUES
+				   (057287233, 00000000000000000000),
+                   (705924652, 11111111111111111111), 
+                   (223125514, 22222222222222222222),
+                   (447854456, 33333333333333333333), 
+                   (010122548, 44444444444444444444); 
+
+INSERT INTO PROYECTO (CodProy, Presupuesto, FechaInicio, FechaFin, CodEspecie) VALUES
+					 (10, 200000, '02-15-2023', '12-15-2023', 1004),
+                     (20, 210000, '03-16-2023', '06-06-2023', 1005),
+                     (30, 220000, '05-17-2023', '11-22-2023', 2003),
+                     (40, 250000, '07-22-2023', '12-20-2023', 2006),
+                     (50, 760000, '09-26-2023', '11-15-2023', 3003);
+                     
+                   
+	
