@@ -441,5 +441,35 @@ INSERT INTO PROYECTO (CodProy, Presupuesto, FechaInicio, FechaFin, CodEspecie) V
                      (40, 250000, '07-22-2023', '12-20-2023', 2006),
                      (50, 760000, '09-26-2023', '11-15-2023', 3003);
                      
-                   
-	
+                     
+/* Maria Isabel insertara valores en las tablas visitante, comunidad autonoma, parque natural, entrada, alojamientos y excursion */
+
+INSERT INTO `PARQUE NATURAL` (CodPn, Nombre, FechaDeclaracion) values 
+					(34259, 'Laguna Peñalara', '1990-06-15');
+                    
+INSERT INTO `COMUNIDAD AUTONOMA` (CodCA, Nombre, OrgResponsable) values
+					(472925, 'CA Madrid', 'Gobierno de Madrid');
+                    
+INSERT INTO ENTRADA (CodEntrada, CodPN) values
+					(235897, 34259);
+                    
+INSERT INTO VISITANTE (DNI, Nombre, Domicilio, Profesion) values
+					(123456789, 'Juan', 'Calle del Pino, 30', 'Camarero'),
+                    (456789123, 'Lola', 'Avenida del Abeto, 20', 'Arquitecto'),
+                    (789123456, 'Sofia', 'Calle del Lagarto, 12', 'Traductora'),
+                    (987654321, 'Antonio', 'Avenida de la Marmota, 2', 'Abogado'),
+                    (654321987, 'Lorena', 'Calle del Arcoiris, 7', 'Profesora');
+                    
+INSERT INTO ALOJAMIENTO (CodAlojamiento, Categoria, Capacidad, CodPN) values
+					(983456918, 'Deluxe resort', 1345, 34259),
+                    (234589758, 'Camping', 293, 34259),
+                    (213487009, 'Refugio', 67, 34259),
+                    (098478975, 'Hotel Rural', 402, 34259), 
+                    (875980032, 'Couchsurfing', 5, 34259);
+                    
+INSERT INTO EXCURSION (CodExcursion, Fecha, Hora, apie, CodAlojamiento) values
+					(14987253, '2023-02-28', '2023-02-28 08:00:00', 'Caminata a pie', 983456918),
+                    (78689090, '2023-03-01', '2023-03-01 11:15:00', 'Escalada vertical', 234589758),
+                    (12400834, '2023-03-15', '2023-03-15 09:50:00', 'Trail running', 213487009),
+                    (25080956, '2023-03-31', '2023-03-31 12:30:00', 'Paseo fotografico', 098478975),
+                    (34701257, '2023-04-05', '2023-04-05 07:00:00', 'Ultramaraton', 875980032);
